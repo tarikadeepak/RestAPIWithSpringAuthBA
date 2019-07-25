@@ -1,5 +1,7 @@
 package com.restapi.demo.models;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
@@ -10,7 +12,14 @@ public class Programmer {
 	private String lastName;
 	private String technology;
 	private int score;
-	
+	@XmlAttribute
+	public String getTechnology() {
+		return technology;
+	}
+	public void setTechnology(String technology) {
+		this.technology = technology;
+	}
+	@XmlElement
 	public int getId() {
 		return id;
 	}
@@ -29,12 +38,7 @@ public class Programmer {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public String getTechnology() {
-		return technology;
-	}
-	public void setTechnology(String technology) {
-		this.technology = technology;
-	}
+	
 	public int getScore() {
 		return score;
 	}
