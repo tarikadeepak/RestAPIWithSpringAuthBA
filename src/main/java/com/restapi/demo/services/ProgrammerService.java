@@ -11,31 +11,43 @@ import javax.ws.rs.core.MediaType;
 
 import org.springframework.validation.annotation.Validated;
 
-import com.restapi.demo.models.Programmer;
-import com.restapi.demo.repositories.ProgrammerRepository;
+import com.restapi.demo.models.ProgrammerJSON;
+import com.restapi.demo.models.ProgrammerXML;
+import com.restapi.demo.repositories.ProgrammerRepositoryJSON;
+import com.restapi.demo.repositories.ProgrammerRepositoryXML;
 
 @Validated
 @Path("programmers")
 public class ProgrammerService {
-	ProgrammerRepository pr = new ProgrammerRepository();
+	ProgrammerRepositoryXML prXML = new ProgrammerRepositoryXML();
+	ProgrammerRepositoryJSON prJSON = new ProgrammerRepositoryJSON();
 	@GET
+	@Path("XML")
 	@Produces(MediaType.APPLICATION_XML)
-	public List<Programmer> getProgrammers(){
+	public List<ProgrammerXML> getProgrammersXML(){
 		System.out.println("GetProgrammers");
-		return pr.getProgrammers();
+		return prXML.getProgrammers();
+	}
+	
+	@GET
+	@Path("JSON")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<ProgrammerJSON> getProgrammersJSON(){
+		System.out.println("GetProgrammers");
+		return prJSON.getProgrammers();
 	}
 	
 	@GET
 	@Path("programmer/{id}")
 	@Produces(MediaType.APPLICATION_XML)
-	public Programmer getProgrammers(@PathParam("id") int id){
-		System.out.println(pr.getProgrammer(id).toString());
-		return pr.getProgrammer(id);
+	public ProgrammerXML getProgrammers(@PathParam("id") int id){
+		System.out.println(prXML.getProgrammer(id).toString());
+		return prXML.getProgrammer(id);
 	}
 	
 	@POST
 	@Path("addnew")
-	public Programmer createProgrammers(Programmer programmer){
+	public ProgrammerXML createProgrammers(ProgrammerXML programmer){
 		return programmer;
 	}
 	
